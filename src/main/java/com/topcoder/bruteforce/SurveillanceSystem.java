@@ -21,7 +21,7 @@ public class SurveillanceSystem {
 
     public String getContainerInfo(String containers, int[] reports, int L) {
 
-        StringBuffer sectorInfo = new StringBuffer();
+        StringBuilder sectorInfo = new StringBuilder();
 
 
         for (int i = 0; i < containers.length(); i++) {
@@ -40,23 +40,23 @@ public class SurveillanceSystem {
 
         // Key is count of containers
         // Value is list of sectors where 'key' number containers are present
-        Map<Integer, List<Integer>> containerTosegments = new HashMap<Integer, List<Integer>>();
+        Map<Integer, List<Integer>> containerTosegments = new HashMap<>();
         for (int i = 0; i < containersInSegment.length; i++) {
 
             List<Integer> segmentNumber = containerTosegments.get(containersInSegment[i]);
             if (segmentNumber == null) {
-                segmentNumber = new ArrayList<Integer>();
+                segmentNumber = new ArrayList<>();
             }
-            segmentNumber.add(new Integer(i));
+            segmentNumber.add(i);
             containerTosegments.put(containersInSegment[i], segmentNumber);
 
         }
 
         // Key count of containers
         // Value is count of sectors required
-        Map<Integer, Integer> requiredContainersToSegmentMap = new HashMap<Integer, Integer>();
-        for (int i = 0; i < reports.length; i++) {
-            requiredContainersToSegmentMap.put(reports[i], requiredContainersToSegmentMap.get(reports[i]) == null ? 1 : (requiredContainersToSegmentMap.get(reports[i]) + 1));
+        Map<Integer, Integer> requiredContainersToSegmentMap = new HashMap<>();
+        for (int i : reports) {
+            requiredContainersToSegmentMap.put(i, requiredContainersToSegmentMap.get(i) == null ? 1 : (requiredContainersToSegmentMap.get(i) + 1));
         }
 
         System.out.println(containerTosegments);
@@ -65,17 +65,17 @@ public class SurveillanceSystem {
 
         for (Entry<Integer, Integer> reportCount : requiredContainersToSegmentMap.entrySet()) {
 
-            Map<Integer, Integer> sectors = new HashMap<Integer, Integer>();
+            Map<Integer, Integer> sectors = new HashMap<>();
             List<Integer> list = containerTosegments.get(reportCount.getKey());
-            Integer max = new Integer(1);
-            for (int i = 0; i < list.size(); i++) {
+            int max = 1;
+            for (int i : list) {
 
                 for (int j = 0; j < L; j++) {
 
-                    Integer sector = list.get(i) + j;
+                    Integer sector = i + j;
                     Integer sectorRepitition = sectors.get(sector);
                     if (sectorRepitition == null) {
-                        sectors.put(sector, new Integer(1));
+                        sectors.put(sector, 1);
                     } else {
                         Integer value = sectors.get(sector);
                         value = value + 1;
@@ -95,7 +95,7 @@ public class SurveillanceSystem {
                     if (remaining == 0) {
                         sectorInfo.setCharAt(entry.getKey(), '+');
                     } else if (remaining > 0) {
-                        sectorInfo.setCharAt(entry.getKey(), sectors.get(entry.getKey()).intValue() > remaining ? '+' : '?');
+                        sectorInfo.setCharAt(entry.getKey(), sectors.get(entry.getKey())> remaining ? '+' : '?');
                     }
 
                 }

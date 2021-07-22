@@ -72,15 +72,15 @@ public class Egalitarianism {
     }
 
     private int getMaxDistanceWithSource(String[] adjMatrix, int s) {
-        Queue<Integer> queue = new LinkedList<Integer>();
+        Queue<Integer> queue = new LinkedList<>();
 
-        Set<Integer> connected = new HashSet<Integer>();
+        Set<Integer> connected = new HashSet<>();
 
         int[] colors = new int[adjMatrix.length];
         int[] d = new int[adjMatrix.length];
 
-        queue.add(new Integer(s));
-        connected.add(new Integer(s));
+        queue.add(s);
+        connected.add(s);
 
         int maxD = 0;
         while (!queue.isEmpty()) {
@@ -92,7 +92,7 @@ public class Egalitarianism {
                 if (adjList.charAt(i) == 'Y' && colors[i] == 0 && d[i] == 0) {
 
 
-                    queue.add(new Integer(i));
+                    queue.add(i);
                     d[i] = d[vertex] + 1;
                     if (d[i] > maxD)
                         maxD = d[i];

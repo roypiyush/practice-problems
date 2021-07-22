@@ -8,13 +8,13 @@ import java.util.Map;
 @SuppressWarnings("unused")
 public class PrimeFactorization {
 
-    private Map<Integer, Integer> primeFactors = new HashMap<Integer, Integer>();
+    private Map<Integer, Integer> primeFactors = new HashMap<>();
 
     public static void main(String[] args) {
 
         PrimeFactorization factorization = new PrimeFactorization();
 
-        List<Integer> integers = new ArrayList<Integer>();
+        List<Integer> integers = new ArrayList<>();
 //		int givenNumber = 10000000;
 //		int sqrt = (int) Math.sqrt(givenNumber);
 //
@@ -72,7 +72,7 @@ public class PrimeFactorization {
 
     public boolean isPrime(int number) {
 
-        int sqrt = (int) Math.sqrt(new Double(number));
+        int sqrt = (int) Math.sqrt(number);
 
         for (int i = 2; i <= sqrt; i++) {
             if (number % i == 0)
