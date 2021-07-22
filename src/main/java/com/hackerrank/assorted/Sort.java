@@ -5,17 +5,17 @@ import java.util.HashSet;
 
 public class Sort {
     static String missingChar(String inputStr) {
-        HashSet<Character> characters = new HashSet<Character>();
+        HashSet<Character> characters = new HashSet<>();
 
         String lowerString = inputStr.toLowerCase();
 
         int min = 1000, max = 0;
         for (int i = 0; i < lowerString.length(); i++) {
             char c = lowerString.charAt(i);
-            int c1 = (int) c;
-            int c2 = (int) c;
+            int c1 = c;
+            int c2 = c;
 
-            characters.add(new Character(c));
+            characters.add(c);
 
             if (c1 > max)
                 max = c1;

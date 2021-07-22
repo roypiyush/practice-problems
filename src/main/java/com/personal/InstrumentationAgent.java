@@ -26,7 +26,7 @@ public class InstrumentationAgent {
 
     public static long getDeepObjectSize(final Object object) {
         long sum = 0;
-        LinkedList linkedList = new LinkedList();
+        LinkedList<Object> linkedList = new LinkedList<>();
         linkedList.add(object);
 
         while (!linkedList.isEmpty()) {
