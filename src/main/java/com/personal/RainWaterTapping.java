@@ -1,4 +1,4 @@
-package com.personal.dynamicprogramming;
+package com.personal;
 
 import java.util.Deque;
 import java.util.LinkedList;
