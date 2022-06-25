@@ -1,6 +1,8 @@
 import random
 from functools import reduce
 
+# Incomplete
+
 
 class SegmentTree:
     """
@@ -65,7 +67,8 @@ def update(root, l, r, index_to_update, increase_by):
 
 if __name__ == '__main__':
 
-    array = map(lambda x: random.randint(1, 100), range(100))
+    value_count = 10
+    array = list(map(lambda x: random.randint(1, value_count), range(value_count)))
     size = len(array)
     ci, cj = 0, size - 1
     i, j = 1, 88
