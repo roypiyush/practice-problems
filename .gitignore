@@ -6,3 +6,4 @@ target
 practice-problem.iml
 .idea/workspace.xml
 *.pyc
+/.vscode/
