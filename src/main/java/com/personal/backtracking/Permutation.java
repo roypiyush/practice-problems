@@ -16,7 +16,7 @@ public class Permutation {
         long start = System.currentTimeMillis();
         Set<String> set = new HashSet<>();
         permutation.permute(str, 0, set);
-        System.out.println("Time elasped " + (System.currentTimeMillis() - start) + " ms");
+        System.out.println("Time elapsed " + (System.currentTimeMillis() - start) + " ms");
         System.out.println(set);
 
     }
