@@ -56,11 +56,12 @@ public class DAryHeap {
     }
 
     public int heapExtractMax() {
-        int max = A[0];
-        A[0] = A[size - 1];
+        final int maxPos = 0;
+        int max = A[maxPos];
+        A[maxPos] = A[size - 1];
         A[size - 1] = -1;
         size = size - 1;
-        maxHeapify(0);
+        maxHeapify(maxPos);
         return max;
     }
 
