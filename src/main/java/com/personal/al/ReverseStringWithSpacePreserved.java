@@ -1,4 +1,4 @@
-package com.personal;
+package com.personal.al;
 
 public class ReverseStringWithSpacePreserved {
     private static String reverse(String str)

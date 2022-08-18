@@ -26,7 +26,7 @@
 				<configuration>
 					<archive>
 						<manifestEntries>
-							<Premain-Class>com.personal.InstrumentationAgent</Premain-Class>
+							<Premain-Class>com.personal.al.InstrumentationAgent</Premain-Class>
 						</manifestEntries>
 					</archive>
 				</configuration>

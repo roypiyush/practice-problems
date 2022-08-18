@@ -1,4 +1,4 @@
-package com.personal;
+package com.personal.al;
 
 import com.personal.eightpuzzle.PuzzleNode;
 import com.personal.eightpuzzle.Utility;

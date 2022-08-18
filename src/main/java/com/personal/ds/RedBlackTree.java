@@ -1,4 +1,6 @@
-package com.personal;
+package com.personal.ds;
+
+import java.util.Arrays;
 
 enum Color {
     RED,
@@ -11,8 +13,19 @@ class RBNode {
     public RBNode left;
     public RBNode right;
     public RBNode parent;
+
+    public static final String ANSI_BLACK  = "\u001B[30m";
+    public static final String ANSI_RED    = "\u001B[31m";
+    public static final String ANSI_RESET  = "\u001B[0m";
+
     public String toString() {
-        return key == null ? "NIL" : String.format("%s %s", key, color);
+        if (color == Color.RED) {
+            return ANSI_RED + key + ANSI_RESET;
+        } else if (color == Color.BLACK) {
+            return ANSI_BLACK + key + ANSI_RESET;
+        } else {
+            return ANSI_BLACK + "NIL" + ANSI_RESET;
+        }
     }
 }
 
@@ -28,6 +41,7 @@ class RBNode {
  */
 public class RedBlackTree {
     private static final RBNode NIL = new RBNode();
+    public static final int SPACE_COUNT = 4;
     private RBNode ROOT;
 
     private RedBlackTree() {
@@ -102,6 +116,7 @@ public class RedBlackTree {
     private void fixInsert(RBNode newNode) {
         while (newNode.color == Color.RED) {
             if (newNode.parent.parent == null) { // Need to handle explicitly
+                //newNode.parent.color = Color.BLACK;
                 break;
             }
             if (newNode.parent.parent.left == newNode.parent) { // If newNode's parent is left child
@@ -173,8 +188,10 @@ public class RedBlackTree {
 
     public static void main(String[] args) {
         RedBlackTree tree = new RedBlackTree();
-        for (int i = 1; i <= 10; i++)
-            tree.insert(buildNewNode(i));
-        System.out.println();
+
+        tree.insert(buildNewNode(15));
+        tree.insert(buildNewNode(5));
+        tree.insert(buildNewNode(1));
+        tree.insert(buildNewNode(0));
     }
 }

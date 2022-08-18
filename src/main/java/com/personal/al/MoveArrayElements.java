@@ -1,4 +1,4 @@
-package com.personal;
+package com.personal.al;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;

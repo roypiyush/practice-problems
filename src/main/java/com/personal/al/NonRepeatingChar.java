@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.personal;
+package com.personal.al;
 
 import java.util.HashSet;
 import java.util.Random;

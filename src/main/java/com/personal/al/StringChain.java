@@ -1,6 +1,5 @@
-package com.personal;
+package com.personal.al;
 
-import java.nio.channels.Pipe;
 import java.util.PriorityQueue;
 
 public class StringChain {
