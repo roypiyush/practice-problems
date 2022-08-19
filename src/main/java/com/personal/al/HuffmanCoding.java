@@ -63,16 +63,24 @@ public class HuffmanCoding {
             if (queue.size() == 1) {
                 break;
             }
-            final HuffmanNode n1 = queue.poll();
-            final HuffmanNode n2 = queue.poll();
+            final HuffmanNode n1 = extractMin(queue);
+            final HuffmanNode n2 = extractMin(queue);
 
             final HuffmanNode parent = new HuffmanNode(null, n1.getFrequency() + n2.getFrequency());
             parent.setLeft(n1);
             parent.setRight(n2);
             
-            queue.add(parent);
+            insert(queue, parent);
         }
+        return extractMin(queue);
+    }
+
+    private HuffmanNode extractMin(final PriorityQueue<HuffmanNode> queue) {
         return queue.poll();
+    }
+
+    private boolean insert(final PriorityQueue<HuffmanNode> queue, final HuffmanNode node) {
+        return queue.add(node);
     }
 
     private void printCodes(final HuffmanNode root, final String code) {
