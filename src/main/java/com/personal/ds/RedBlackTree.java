@@ -19,13 +19,7 @@ class RBNode {
     public static final String ANSI_RESET  = "\u001B[0m";
 
     public String toString() {
-        if (color == Color.RED) {
-            return ANSI_RED + key + ANSI_RESET;
-        } else if (color == Color.BLACK) {
-            return ANSI_BLACK + key + ANSI_RESET;
-        } else {
-            return ANSI_BLACK + "NIL" + ANSI_RESET;
-        }
+        return key == null ? null : Integer.toString(key);
     }
 }
 
@@ -189,6 +183,9 @@ public class RedBlackTree {
     public static void main(String[] args) {
         RedBlackTree tree = new RedBlackTree();
 
+        for (int i = 1; i <= 100; i++) {
+            tree.insert(buildNewNode(i));
+        }
         tree.insert(buildNewNode(15));
         tree.insert(buildNewNode(5));
         tree.insert(buildNewNode(1));
