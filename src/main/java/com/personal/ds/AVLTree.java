@@ -1,8 +1,5 @@
 package com.personal.ds;
 
-import java.util.Deque;
-import java.util.LinkedList;
-
 class AVLNode {
     Integer key;
     AVLNode left;
@@ -33,120 +30,91 @@ public class AVLTree {
      * @return integer value of height difference
      */
     int balancingFactor(AVLNode left, AVLNode right) {
-        if (left == null && right == null) {
-            return 0;
-        } else if (left == null) {
-            return 0 - right.height;
-        } else if (right == null) {
-            return left.height - 0;
-        } else {
-            return left.height - right.height;
-        }
+        return (left == null ? 0 : left.height) - (right == null ? 0 : right.height);
+    }
+
+    int getHeight(AVLNode node) {
+        return  1 + Math.max(
+                node.left == null ? 0 : node.left.height,
+                node.right == null ? 0 : node.right.height);
     }
 
     /**
      *
-     * @param node
-     * @return pointer to this subtree root node
+     * @param left
+     * @return pointer to this subtree root left
      */
-    AVLNode leftRotate(AVLNode node) {
-        AVLNode n = node.right;
-        node.right = n.left;
-        n.left = node;
+    AVLNode leftRotate(AVLNode left) {
+        AVLNode n = left.right;
+        left.right = n.left;
+        n.left = left;
 
-        node.height = node.left == null && node.right == null ? 1 : (Math.max(node.left == null ? 0 : node.left.height, node.right == null ? 0 : node.right.height) + 1);
-        n.height = n.left == null && n.right == null ? 1 : (Math.max(n.left == null ? 0 : n.left.height, n.right == null ? 0 : n.right.height) + 1);
+        left.height = getHeight(left);
+        n.height = getHeight(n);
 
         return n;
     }
 
     /**
      *
-     * @param node
-     * @return pointer to this subtree root node
+     * @param right
+     * @return pointer to this subtree root right
      */
-    AVLNode rightRotate(AVLNode node) {
-        AVLNode n = node.left;
-        node.left = n.right;
-        n.right = node;
+    AVLNode rightRotate(AVLNode right) {
+        AVLNode n = right.left;
+        right.left = n.right;
+        n.right = right;
 
-        node.height = node.left == null && node.right == null ? 1 : (Math.max(node.left == null ? 0 : node.left.height, node.right == null ? 0 : node.right.height) + 1);
-        n.height = n.left == null && n.right == null ? 1 : (Math.max(n.left == null ? 0 : n.left.height, n.right == null ? 0 : n.right.height) + 1);
+        right.height = getHeight(right);
+        n.height = getHeight(n);
 
         return n;
     }
 
-    void insert(AVLNode node) {
-        AVLNode p = null;
-        AVLNode cur = ROOT;
-
-        Deque<AVLNode> stack = new LinkedList<>();
-        while (cur != null) {
-            p = cur;
-            stack.push(p);
-            if (node.key < cur.key) {
-                cur = cur.left;
-            } else {
-                cur = cur.right;
-            }
-        }
-        if (p == null) {
-            ROOT = node;
-            return;
-        }
-
-        if (node.key < p.key) {
-            p.left = node;
+    public void insert(int key) {
+        if (ROOT == null) {
+            ROOT = insert(null, key);
         } else {
-            p.right = node;
+            insert(ROOT, key);
+        }
+    }
+
+    private AVLNode insert(AVLNode node, int key) {
+        if (node == null) {
+            return new AVLNode(key);
         }
 
-        // Fix unbalanced node
-        while (!stack.isEmpty()) {
-            AVLNode parent = stack.pop();
-            AVLNode temp = stack.peek();
-            Boolean isLeft = temp == null ? null : temp.left == parent;
+        if (key < node.key) {
+            node.left = insert(node.left, key);
+        } else {
+            node.right = insert(node.right, key);
+        }
 
-            int ht = balancingFactor(parent.left, parent.right);
-            // ht >= 2 or ht <= -2 is considered unbalanced
-            if (ht == 2) {
-                int h = balancingFactor(parent.left.left, parent.left.right);
-                if (h == -1) {
-                    parent = leftRotate(parent);
-                }
-                parent = rightRotate(parent);
-                if (isLeft == null) {
-                    ROOT = parent;
-                } else if (isLeft) {
-                    temp.left = parent;
-                } else {
-                    temp.right = parent;
-                }
-            } else if (ht == -2) {
-                int h = balancingFactor(parent.right.left, parent.right.right);
-                if (h == 1) {
-                    parent = rightRotate(parent);
-                }
-                parent = leftRotate(parent);
-                if (isLeft == null) {
-                    ROOT = parent;
-                } else if (isLeft) {
-                    temp.left = parent;
-                } else {
-                    temp.right = parent;
-                }
+        int bf = balancingFactor(node.left, node.right);
+        if (bf > 1) {
+            int h = balancingFactor(node.left.left, node.left.right);
+            if (h == -1) {
+                node.left = leftRotate(node.left);
             }
-
-            parent.height = Math.max((parent.left == null ? 0 : parent.left.height), (parent.right == null ? null : parent.right.height)) + 1;
+            return rightRotate(node);
+        } else if (bf < -1) {
+            int h = balancingFactor(node.right.left, node.right.right);
+            if (h == 1) {
+                node.right = rightRotate(node.right);
+            }
+            return leftRotate(node);
+        } else {
+            node.height = getHeight(node);
+            return node;
         }
     }
 
     public static void main(String[] args) {
         AVLTree tree = new AVLTree();
-        int size = 100;
-        for (int i = 1; i < size + 1; i++) {
-            tree.insert(new AVLNode(i));
+        int size = 100000;
+        for (int i = 0; i < size; i++) {
+            tree.insert((int) (Math.random() * 10000));
         }
-        System.out.println(tree);
+        System.out.printf("Size=%d TreeHeight=%d%n", size, tree.ROOT.height);
     }
 }

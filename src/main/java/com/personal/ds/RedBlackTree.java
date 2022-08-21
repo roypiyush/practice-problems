@@ -1,10 +1,8 @@
 package com.personal.ds;
 
-import java.util.Arrays;
-
 enum Color {
-    RED,
-    BLACK
+    R, // Red
+    B  // Black
 }
 
 class RBNode {
@@ -19,7 +17,7 @@ class RBNode {
     public static final String ANSI_RESET  = "\u001B[0m";
 
     public String toString() {
-        return key == null ? null : Integer.toString(key);
+        return key == null ? "NIL" : Integer.toString(key);
     }
 }
 
@@ -35,50 +33,56 @@ class RBNode {
  */
 public class RedBlackTree {
     private static final RBNode NIL = new RBNode();
-    public static final int SPACE_COUNT = 4;
     private RBNode ROOT;
 
     private RedBlackTree() {
-        NIL.color = Color.BLACK;
+        NIL.color = Color.B;
         ROOT = NIL;
     }
 
-    private RBNode leftRotate(RBNode node) {
-        RBNode right = node.right;
-        node.right = right.left;
-        if (right.left != NIL) {
-            right.left.parent = node;
+    public int getHeight(RBNode node) {
+        if (node == NIL) {
+            return 0;
         }
-        right.parent = node.parent;
-        if (node.parent == NIL) {
-            ROOT = right;
-        } else if (node == node.parent.left) {
-            node.parent.left = right;
-        } else {
-            node.parent.right = right;
-        }
-        right.left = node;
-        node.parent = right;
-        return right;
+        return 1 + Math.max(getHeight(node.left), getHeight(node.right));
     }
 
-    private RBNode rightRotate(RBNode node) {
-        RBNode left = node.left;
-        node.left = left.right;
-        if (left.right != NIL) {
-            left.right.parent = node;
+    private RBNode leftRotate(RBNode x) {
+        RBNode y = x.right;
+        x.right = y.left;
+        if (y.left != NIL) {
+            y.left.parent = x;
         }
-        left.parent = node.parent;
-        if (node.parent == NIL) {
-            ROOT = left;
-        } else if (node == node.parent.left) {
-            node.parent.right = left;
+        y.parent = x.parent;
+        if (x.parent == NIL) {
+            ROOT = y;
+        } else if (x == x.parent.left) {
+            x.parent.left = y;
         } else {
-            node.parent.left = left;
+            x.parent.right = y;
         }
-        left.left = node;
-        node.parent = left;
-        return left;
+        y.left = x;
+        x.parent = y;
+        return y;
+    }
+
+    private RBNode rightRotate(RBNode y) {
+        RBNode x = y.left;
+        y.left = x.right;
+        if (x.right != NIL) {
+            x.right.parent = y;
+        }
+        x.parent = y.parent;
+        if (y.parent == NIL) {
+            ROOT = x;
+        } else if (y == y.parent.left) {
+            y.parent.right = x;
+        } else {
+            y.parent.left = x;
+        }
+        x.right = y;
+        y.parent = x;
+        return x;
     }
 
 
@@ -103,57 +107,52 @@ public class RedBlackTree {
         }
         newNode.left = NIL;
         newNode.right = NIL;
-        newNode.color = Color.RED;
+        newNode.color = Color.R;
         fixInsert(newNode);
     }
 
     private void fixInsert(RBNode newNode) {
-        while (newNode.color == Color.RED) {
-            if (newNode.parent.parent == null) { // Need to handle explicitly
-                //newNode.parent.color = Color.BLACK;
-                break;
-            }
-            if (newNode.parent.parent.left == newNode.parent) { // If newNode's parent is left child
+        while (newNode.parent.color == Color.R) {
+            // If newNode's parent is left child
+            if (newNode.parent.parent.left == newNode.parent) {
                 RBNode uncle = newNode.parent.parent.right;
-                if (uncle == null) { // Need to handle explicitly
-                    break;
-                } else if (uncle.color == Color.RED) { // Case 1
+                if (uncle.color == Color.R) { // Case 1
                     // Change color of newNode's parent, uncle, grandparent
-                    uncle.color = Color.BLACK;
-                    newNode.parent.color = Color.BLACK;
-                    newNode.parent.parent.color = Color.RED;
-                    newNode = newNode.parent.parent;
+                    newNode.parent.color = Color.B;
+                    uncle.color = Color.B;
+                    newNode.parent.parent.color = Color.R;
+                    newNode = newNode.parent.parent; // Move the pointer up
                 } else {
-                    if (newNode.parent.right == newNode) {
+                    // uncle is black
+                    if (newNode.parent.right == newNode) { // case 2
                         newNode = newNode.parent; // Move the pointer up
-                        newNode = leftRotate(newNode);
+                        leftRotate(newNode);
                     }
-                    newNode.parent.color = Color.BLACK;
-                    newNode.parent.parent.color = Color.RED;
-                    newNode = rightRotate(newNode.parent.parent);
+                    // case 3
+                    newNode.parent.color = Color.B;
+                    newNode.parent.parent.color = Color.R;
+                    rightRotate(newNode.parent.parent);
                 }
             } else { // If newNode's parent is right child
                 RBNode uncle = newNode.parent.parent.left;
-                if (uncle == null) { // Need to handle explicitly
-                    break;
-                } else if (uncle.color == Color.RED) { // Case 1
+                if (uncle.color == Color.R) { // Case 1
                     // Change color of newNode's parent, uncle, grandparent
-                    uncle.color = Color.BLACK;
-                    newNode.parent.color = Color.BLACK;
-                    newNode.parent.parent.color = Color.RED;
+                    uncle.color = Color.B;
+                    newNode.parent.color = Color.B;
+                    newNode.parent.parent.color = Color.R;
                     newNode = newNode.parent.parent;
                 } else {
                     if (newNode.parent.left == newNode) {
                         newNode = newNode.parent; // Move the pointer up
-                        newNode = rightRotate(newNode);
+                        rightRotate(newNode);
                     }
-                    newNode.parent.color = Color.BLACK;
-                    newNode.parent.parent.color = Color.RED;
-                    newNode = leftRotate(newNode.parent.parent);
+                    newNode.parent.color = Color.B;
+                    newNode.parent.parent.color = Color.R;
+                    leftRotate(newNode.parent.parent);
                 }
             }
         }
-        ROOT.color = Color.BLACK;
+        ROOT.color = Color.B;
     }
 
     @SuppressWarnings("unused")
@@ -173,7 +172,7 @@ public class RedBlackTree {
     private static RBNode buildNewNode(int key) {
         RBNode node = new RBNode();
         node.key = key;
-        node.color = Color.RED;
+        node.color = Color.R;
         node.left = NIL;
         node.right = NIL;
         node.parent = NIL;
@@ -183,12 +182,11 @@ public class RedBlackTree {
     public static void main(String[] args) {
         RedBlackTree tree = new RedBlackTree();
 
-        for (int i = 1; i <= 100; i++) {
-            tree.insert(buildNewNode(i));
+        int size = 100;
+        for (int i = 0; i < size; i++) {
+            final int key = (int) (Math.random() * 10);
+            tree.insert(buildNewNode(key));
         }
-        tree.insert(buildNewNode(15));
-        tree.insert(buildNewNode(5));
-        tree.insert(buildNewNode(1));
-        tree.insert(buildNewNode(0));
+        System.out.printf("Size=%d TreeHeight=%d%n", size, 0);
     }
 }
