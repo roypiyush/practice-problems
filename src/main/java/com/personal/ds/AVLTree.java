@@ -111,9 +111,9 @@ public class AVLTree {
 
     public static void main(String[] args) {
         AVLTree tree = new AVLTree();
-        int size = 100000;
+        int size = 1000;
         for (int i = 0; i < size; i++) {
-            tree.insert((int) (Math.random() * 10000));
+            tree.insert((int) (Math.random() * 10));
         }
         System.out.printf("Size=%d TreeHeight=%d%n", size, tree.ROOT.height);
     }

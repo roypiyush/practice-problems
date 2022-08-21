@@ -12,9 +12,9 @@ class RBNode {
     public RBNode right;
     public RBNode parent;
 
-    public static final String ANSI_BLACK  = "\u001B[30m";
-    public static final String ANSI_RED    = "\u001B[31m";
-    public static final String ANSI_RESET  = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
     public String toString() {
         return key == null ? "NIL" : Integer.toString(key);
@@ -22,7 +22,7 @@ class RBNode {
 }
 
 /**
- * Properties of Red Black Tree.
+ * Properties of <b>Red Black Tree</b>.
  * <ol>
  *     <li>Every node is either black or red</li>
  *     <li>Root is always black</li>
@@ -76,9 +76,9 @@ public class RedBlackTree {
         if (y.parent == NIL) {
             ROOT = x;
         } else if (y == y.parent.left) {
-            y.parent.right = x;
-        } else {
             y.parent.left = x;
+        } else {
+            y.parent.right = x;
         }
         x.right = y;
         y.parent = x;
@@ -115,13 +115,15 @@ public class RedBlackTree {
         while (newNode.parent.color == Color.R) {
             // If newNode's parent is left child
             if (newNode.parent.parent.left == newNode.parent) {
+
                 RBNode uncle = newNode.parent.parent.right;
                 if (uncle.color == Color.R) { // Case 1
                     // Change color of newNode's parent, uncle, grandparent
-                    newNode.parent.color = Color.B;
                     uncle.color = Color.B;
+                    newNode.parent.color = Color.B;
                     newNode.parent.parent.color = Color.R;
                     newNode = newNode.parent.parent; // Move the pointer up
+
                 } else {
                     // uncle is black
                     if (newNode.parent.right == newNode) { // case 2
@@ -134,6 +136,7 @@ public class RedBlackTree {
                     rightRotate(newNode.parent.parent);
                 }
             } else { // If newNode's parent is right child
+
                 RBNode uncle = newNode.parent.parent.left;
                 if (uncle.color == Color.R) { // Case 1
                     // Change color of newNode's parent, uncle, grandparent
@@ -141,6 +144,7 @@ public class RedBlackTree {
                     newNode.parent.color = Color.B;
                     newNode.parent.parent.color = Color.R;
                     newNode = newNode.parent.parent;
+
                 } else {
                     if (newNode.parent.left == newNode) {
                         newNode = newNode.parent; // Move the pointer up
@@ -169,10 +173,10 @@ public class RedBlackTree {
         }
     }
 
-    private static RBNode buildNewNode(int key) {
+    private static RBNode buildNewNode(int key, Color color) {
         RBNode node = new RBNode();
         node.key = key;
-        node.color = Color.R;
+        node.color = color;
         node.left = NIL;
         node.right = NIL;
         node.parent = NIL;
@@ -181,12 +185,11 @@ public class RedBlackTree {
 
     public static void main(String[] args) {
         RedBlackTree tree = new RedBlackTree();
-
-        int size = 100;
+        int size = 1000;
         for (int i = 0; i < size; i++) {
-            final int key = (int) (Math.random() * 10);
-            tree.insert(buildNewNode(key));
+            final int key = (int) (Math.random() * 1000);
+            tree.insert(buildNewNode(key, Color.R));
         }
-        System.out.printf("Size=%d TreeHeight=%d%n", size, 0);
+        System.out.printf("Size=%d TreeHeight=%d%n", size, tree.getHeight(tree.ROOT));
     }
 }
