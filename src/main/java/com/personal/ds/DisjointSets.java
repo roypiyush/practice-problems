@@ -21,6 +21,7 @@ public class DisjointSets {
         if (parent == k) {
             return k;
         }
+        // Making recursive calls until source element is found
         return find(parent);
     }
 

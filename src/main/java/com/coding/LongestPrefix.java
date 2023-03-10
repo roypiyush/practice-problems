@@ -12,36 +12,36 @@ public class LongestPrefix {
         }
     }
 
-    private static int getPrefixLength(String[] strings, int size) {
-        int count = 0;
-        int position = 0;
-        boolean flag = true;
-        while (flag) {
-            char c, s = strings[0].charAt(position);
-            for (int i = 0; i < size; i++) {
-                String item = strings[i];
-                if (position < item.length()) {
-                    c = item.charAt(position);
-                } else {
-                    flag = false;
-                    break;
-                }
-                if (s != c) {
-                    flag = false;
-                    break;
-                } else {
-                    count++;
-                }
-            }
-            position++;
-            if (count != size) {
-                break;
-            } else {
-                count = 0;
-            }
-        }
-        return position - 1;
-    }
+    // private static int getPrefixLength(String[] strings, int size) {
+    //     int count = 0;
+    //     int position = 0;
+    //     boolean flag = true;
+    //     while (flag) {
+    //         char c, s = strings[0].charAt(position);
+    //         for (int i = 0; i < size; i++) {
+    //             String item = strings[i];
+    //             if (position < item.length()) {
+    //                 c = item.charAt(position);
+    //             } else {
+    //                 flag = false;
+    //                 break;
+    //             }
+    //             if (s != c) {
+    //                 flag = false;
+    //                 break;
+    //             } else {
+    //                 count++;
+    //             }
+    //         }
+    //         position++;
+    //         if (count != size) {
+    //             break;
+    //         } else {
+    //             count = 0;
+    //         }
+    //     }
+    //     return position - 1;
+    // }
 
     private static int getPrefixLength1(String[] strings, int size) {
         int position = 0;

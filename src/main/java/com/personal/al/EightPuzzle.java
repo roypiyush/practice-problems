@@ -3,7 +3,6 @@ package com.personal.al;
 import com.personal.eightpuzzle.PuzzleNode;
 import com.personal.eightpuzzle.Utility;
 
-import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class EightPuzzle {
@@ -15,36 +14,36 @@ public class EightPuzzle {
         SimulatedAnnealing(puzzle); // GETS STUCK
     }
 
-    private static void AStar(int[] puzzle) {
-        final long start = System.currentTimeMillis();
-        final PuzzleNode initialPuzzleNode = new PuzzleNode(puzzle, null);
-        AtomicInteger statesGenerated = new AtomicInteger(0);
+    // private static void AStar(int[] puzzle) {
+    //     final long start = System.currentTimeMillis();
+    //     final PuzzleNode initialPuzzleNode = new PuzzleNode(puzzle, null);
+    //     AtomicInteger statesGenerated = new AtomicInteger(0);
 
-        PuzzleNode current = Utility.aStar(initialPuzzleNode, statesGenerated);
-        System.out.println();
-        if (current == null) {
-            System.out.println("No solution found");
-            return;
-        }
-        Utility.printSolution(current);
-        System.out.println("States generated " + statesGenerated.get());
-        System.out.printf("Solution found in %s ms\n", System.currentTimeMillis() - start);
-    }
+    //     PuzzleNode current = Utility.aStar(initialPuzzleNode, statesGenerated);
+    //     System.out.println();
+    //     if (current == null) {
+    //         System.out.println("No solution found");
+    //         return;
+    //     }
+    //     Utility.printSolution(current);
+    //     System.out.println("States generated " + statesGenerated.get());
+    //     System.out.printf("Solution found in %s ms\n", System.currentTimeMillis() - start);
+    // }
 
-    private static void HillClimbing(int[] puzzle) {
-        final long start = System.currentTimeMillis();
-        final PuzzleNode initialPuzzleNode = new PuzzleNode(puzzle, null);
-        AtomicInteger statesGenerated = new AtomicInteger(0);
+    // private static void HillClimbing(int[] puzzle) {
+    //     final long start = System.currentTimeMillis();
+    //     final PuzzleNode initialPuzzleNode = new PuzzleNode(puzzle, null);
+    //     AtomicInteger statesGenerated = new AtomicInteger(0);
 
-        PuzzleNode current = Utility.hillClimbing(initialPuzzleNode, statesGenerated);
-        if (current == null) {
-            System.out.println("No solution found");
-            return;
-        }
-        Utility.printSolution(current);
-        System.out.println("States generated " + statesGenerated.get());
-        System.out.printf("Solution found in %s ms\n", System.currentTimeMillis() - start);
-    }
+    //     PuzzleNode current = Utility.hillClimbing(initialPuzzleNode, statesGenerated);
+    //     if (current == null) {
+    //         System.out.println("No solution found");
+    //         return;
+    //     }
+    //     Utility.printSolution(current);
+    //     System.out.println("States generated " + statesGenerated.get());
+    //     System.out.printf("Solution found in %s ms\n", System.currentTimeMillis() - start);
+    // }
 
     private static void SimulatedAnnealing(int[] puzzle) {
         final long start = System.currentTimeMillis();

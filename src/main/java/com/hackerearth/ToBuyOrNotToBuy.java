@@ -167,7 +167,7 @@ public class ToBuyOrNotToBuy {
 
                 Collections.sort(edges);
 
-                // TODO for MST properly. Vertices are not added properly
+                // for MST properly. Vertices are not added properly
                 for (int i = 0; i < edges.size(); i++) {
                     Edge e = edges.get(i);
 

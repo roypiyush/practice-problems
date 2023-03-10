@@ -11,7 +11,7 @@ public class Triplets<L, R, V> {
         this.value = value;
     }
 
-    public static <L, R, V> Triplets of(L left, R right, V value) {
+    public static <L, R, V> Triplets <L, R, V> of(L left, R right, V value) {
         return new Triplets<L, R, V>(left, right, value);
     }
 

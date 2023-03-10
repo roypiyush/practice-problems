@@ -6,14 +6,13 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
-import java.util.Stack;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Utility {
 
     public static void printSolution(PuzzleNode solutionNode) {
-        Stack<PuzzleNode> puzzleNodes = new Stack<>();
+        //Stack<PuzzleNode> puzzleNodes = new Stack<>();
         if (solutionNode.hasParent()) {
             printSolution(solutionNode.getParentNode());
         }
@@ -104,7 +103,7 @@ public class Utility {
             final PriorityQueue<PuzzleNode> nextStates = populateNextStates(current, comparator);
             statesGenerated.addAndGet(nextStates.size());
             final PuzzleNode puzzleNode = nextStates.peek();
-            if (!seen.contains(puzzleNode)) {
+            if (!seen.contains(puzzleNode.getNumber())) {
                 current = puzzleNode;
             } else {
                 break;
