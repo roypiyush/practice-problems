@@ -43,7 +43,7 @@ public class Permutation {
         }
     }
 
-    private static boolean isSame(final int[] value, final int s, final int i) {
-        return s != i && value[s] == value[i];
-    }
+    // private static boolean isSame(final int[] value, final int s, final int i) {
+    //     return s != i && value[s] == value[i];
+    // }
 }

@@ -37,7 +37,7 @@ public class BinaryTree {
     static void spiralLevelOrder(LinkedList<BinaryTree> queue) {
         int cur = 1;
         LinkedList<BinaryTree> even = new LinkedList<>();
-        LinkedList<BinaryTree> odd = new LinkedList<>();
+        //LinkedList<BinaryTree> odd = new LinkedList<>();
         while (queue.size() != 0) {
             BinaryTree item = queue.poll();
             if (item.level > cur) {

@@ -24,7 +24,7 @@ public class StringChain {
         int cur = 1;
         while (cur > prod) {
 
-            int poll = queue.poll();
+            //int poll = queue.poll();
 
 
             System.out.println(prod);

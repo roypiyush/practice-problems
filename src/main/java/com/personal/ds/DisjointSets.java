@@ -17,12 +17,10 @@ public class DisjointSets {
     }
 
     public int find(int k) {
-        final Integer parent = this.parent.get(k);
-        if (parent == k) {
-            return k;
+        while (parent.get(k) != k) {
+            k = parent.get(k);
         }
-        // Making recursive calls until source element is found
-        return find(parent);
+        return k;
     }
 
     public void union(int a, int b) {

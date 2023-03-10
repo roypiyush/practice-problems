@@ -67,11 +67,15 @@ public class EditDistance {
                 if (source.charAt(i - 1) != destination.charAt(j - 1) && edit[i - 1][j - 1] <= edit[i][j - 1] && edit[i - 1][j - 1] <= edit[i - 1][j]) {
                     edit[i][j] = edit[i - 1][j - 1] + 1;
                     ch[i][j] = 'k';
-                } else if (edit[i][j - 1] <= edit[i - 1][j] && edit[i][j - 1] <= edit[i - 1][j - 1]) {
-                    edit[i][j] = edit[i][j - 1] + 1;
-                    ch[i][j] = 'c';
-                } else if (edit[i - 1][j] <= edit[i][j - 1] && edit[i - 1][j] <= edit[i - 1][j - 1]) {
-                    edit[i][j] = edit[i - 1][j] + 1;
+                // } else if (edit[i][j - 1] <= edit[i - 1][j] && edit[i][j - 1] <= edit[i - 1][j - 1]) {
+                //     edit[i][j] = edit[i][j - 1] + 1;
+                //     ch[i][j] = 'c';
+                // } else if (edit[i - 1][j] <= edit[i][j - 1] && edit[i - 1][j] <= edit[i - 1][j - 1]) {
+                //     edit[i][j] = edit[i - 1][j] + 1;
+                //     ch[i][j] = 'c';
+                // }
+                } else {
+                    edit[i][j] = Math.min(edit[i - 1][j], edit[i][j - 1]) + 1;
                     ch[i][j] = 'c';
                 }
             }
