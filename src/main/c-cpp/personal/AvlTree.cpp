@@ -129,7 +129,7 @@ void preorder(node *node)
 
 int main()
 {
-
+    cout << "Starting AVL Tree" << endl;
     node *root = create(6);
 
     root = insert(root, 3);
