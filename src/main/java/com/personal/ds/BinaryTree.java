@@ -95,6 +95,15 @@ public class BinaryTree {
         preorder(root.right, preorder);
     }
 
+    static void postorder(BinaryTree root, LinkedList<BinaryTree> postOrder) {
+        if (root == null) {
+            return;
+        }
+        postorder(root.left, postOrder);
+        postorder(root.right, postOrder);
+        postOrder.add(root);
+    }
+
     static int findElement(BinaryTree[] array, int key) {
         for (int i = 0; i < array.length; i++) {
             if (key == array[i].value)
@@ -114,19 +123,31 @@ public class BinaryTree {
         return node;
     }
 
-    public static void main(String[] args) {
+    private static void main1() {
         BinaryTree root = new BinaryTree(8);
         root.level = 1;
         root.left = new BinaryTree(5);
         root.right = new BinaryTree(4);
         root.left.left = new BinaryTree(9);
         root.left.right = new BinaryTree(7);
-        root.left.right.left = new BinaryTree(1);
-        root.left.right.right = new BinaryTree(12);
-        root.left.right.right.right = new BinaryTree(2);
-        root.right.right = new BinaryTree(11);
-        root.right.right.left = new BinaryTree(3);
+        root.right.left = new BinaryTree(1);
+        root.right.right = new BinaryTree(12);
 
+        LinkedList<BinaryTree> inorderTree = new LinkedList<>();
+        inorder(root, inorderTree);
+
+        LinkedList<BinaryTree> preorderTree = new LinkedList<>();
+        preorder(root, preorderTree);
+
+        LinkedList<BinaryTree> postorderTree = new LinkedList<>();
+        postorder(root, postorderTree);
+
+
+        System.out.println(inorderTree);
+        System.out.println(preorderTree);
+        System.out.println(postorderTree);
+
+        
         LinkedList<BinaryTree> queue = new LinkedList<>();
         queue.offer(root);
         spiralLevelOrder(queue);
@@ -147,6 +168,12 @@ public class BinaryTree {
         System.out.println(inorder);
     }
 
+
+    public static void main(String[] args) {
+        main1();
+    }
+
+    
     @Override
     public String toString() {
         return value + "";
