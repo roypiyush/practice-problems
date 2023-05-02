@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DisjointSets {
-    private Map<Integer, Integer> parent = new HashMap<>();
+    // Key as child and parent and value
+    private Map<Integer, Integer> childToParent = new HashMap<>();
 
     public void makeSet(int[] universe) {
         /*
@@ -12,13 +13,13 @@ public class DisjointSets {
             Later we start forming child parent relationship based on input graph
          */
         for (int i : universe) {
-            parent.put(i, i);
+            childToParent.put(i, i);
         }
     }
 
     public int find(int k) {
-        while (parent.get(k) != k) {
-            k = parent.get(k);
+        while (childToParent.get(k) != k) {
+            k = childToParent.get(k);
         }
         return k;
     }
@@ -27,7 +28,7 @@ public class DisjointSets {
         int a1 = find(a);
         int b1 = find(b);
 
-        parent.put(a1, b1);
+        childToParent.put(a1, b1);
     }
 
     public static void printSets(int[] universe, DisjointSets ds) {
