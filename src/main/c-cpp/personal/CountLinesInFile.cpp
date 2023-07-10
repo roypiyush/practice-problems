@@ -5,11 +5,15 @@
 using namespace std;
 
 int main(int argc, char* argv[])
-//int main(void)
 {
+	if (argc == 1) {
+		cout << "Args not provided " << argv[0] << endl;
+		return 1;
+	}
+	
 	string line;
 	int count = 0;
-	ifstream file("/home/piyush/Programming/LetMeC/testFile", ios::in);
+	ifstream file("testFile", ios::in);
 	if(file.is_open())
 	{
 		

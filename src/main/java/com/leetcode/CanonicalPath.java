@@ -1,7 +1,6 @@
 package com.leetcode;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class CanonicalPath {
     public String simplifyPath1(String path) {
@@ -35,12 +34,10 @@ public class CanonicalPath {
         StringBuilder dir = new StringBuilder();
         int len = path.length();
         for (int i = 1; i < len; i++) {
-            if (path.charAt(i) == '/') {
-
-                if (dir.length() != 0) {
-                    queue.offer(dir.toString());
-                    dir.setLength(0);
-                }
+            if (path.charAt(i) == '/' && dir.length() != 0) {
+                
+                queue.offer(dir.toString());
+                dir.setLength(0);
 
             } else if (path.charAt(i) == '.') {
 
