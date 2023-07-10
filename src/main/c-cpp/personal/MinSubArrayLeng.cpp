@@ -5,8 +5,7 @@
 using namespace std;
 
 template <typename S>
-ostream &operator<<(ostream &os,
-                    const vector<S> &vector)
+ostream &operator<<(ostream &os, const vector<S> &vector)
 {
     // Printing all the elements
     // using <<
