@@ -1,1 +1,0 @@
-cmd_/home/piyush/Programming/Kernel/Module/helloworld_five/startstop.o := ld -m elf_x86_64   -r -o /home/piyush/Programming/Kernel/Module/helloworld_five/startstop.o /home/piyush/Programming/Kernel/Module/helloworld_five/start.o /home/piyush/Programming/Kernel/Module/helloworld_five/stop.o 
