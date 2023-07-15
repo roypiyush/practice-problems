@@ -26,6 +26,7 @@ node *insert(node *n, int val)
         return create(val);
     }
 
+    // First perform BST insert
     node *newNode;
     if (val < n->val)
     {
@@ -40,7 +41,7 @@ node *insert(node *n, int val)
         n->right = newNode;
     }
 
-    // after inserting newNode adjust heights thourght out the path to parent
+    // update parent while coming out of recursion call stack
     if (newNode->ht == n->ht)
     {
         n->ht = n->ht + 1;
@@ -49,16 +50,19 @@ node *insert(node *n, int val)
     int lht = n->left == NULL ? 0 : n->left->ht;
     int rht = n->right == NULL ? 0 : n->right->ht;
 
-    if (lht - rht > 1)
+    if (lht - rht > 1) // means left heavy
     {
-        // Right Tree height is greater than left tree
 
         // 1. Left right case
         node *l = n->left;
-        int lt = (l->left == NULL ? 0 : l->left->ht) - (l->right == NULL ? 0 : l->right->ht);
-        if (lt == -1)
-        { // Convert it to left left case
 
+        int llht = l->left == NULL ? 0 : l->left->ht;
+        int lrht = l->right == NULL ? 0 : l->right->ht;
+        int lt = llht - lrht;
+
+        if (lt == -1) // determines left right case
+        { 
+            // Convert it to left left case
             node *rt = l->right;
             l->right = rt->left;
             rt->left = l;
@@ -75,13 +79,19 @@ node *insert(node *n, int val)
         n->ht = n->ht - 2;
         return l;
     }
-    else if ((lht - rht) < -1)
+    
+    if ((lht - rht) < -1) // means right heavy
     {
         // 1. right left case
         node *r = n->right;
-        int rt = (r->left == NULL ? 0 : r->left->ht) - (r->right == NULL ? 0 : r->right->ht);
-        if (rt == 1)
-        { // Convert it to right right case
+
+        int rlht = r->left == NULL ? 0 : r->left->ht;
+        int rrht = r->right == NULL ? 0 : r->right->ht;
+        int rt = rlht - rrht;
+
+        if (rt == 1) // determines right left case
+        { 
+            // Convert it to right right case
             node *lt = r->left;
             r->left = lt->right;
             lt->right = r;
