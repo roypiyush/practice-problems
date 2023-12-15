@@ -42,8 +42,8 @@ int main()
    permute(a, 0, len, count);
    chrono::steady_clock::time_point end = chrono::steady_clock::now();
    printf("Total Permuations/Factorial: %d! = %d\n", len, count);
-   printf("Time Taken %d us\n", chrono::duration_cast<chrono::microseconds>(end - begin).count());
-   printf("Time Taken %d ms\n", chrono::duration_cast<chrono::milliseconds>(end - begin).count());
-   printf("Time Taken %d sec\n", chrono::duration_cast<chrono::seconds>(end - begin).count());
+   printf("Time Taken %lld us\n", chrono::duration_cast<chrono::microseconds>(end - begin).count());
+   printf("Time Taken %lld ms\n", chrono::duration_cast<chrono::milliseconds>(end - begin).count());
+   printf("Time Taken %lld sec\n", chrono::duration_cast<chrono::seconds>(end - begin).count());
    return 0;
 }
