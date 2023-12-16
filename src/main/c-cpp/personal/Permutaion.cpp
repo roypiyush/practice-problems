@@ -6,6 +6,12 @@
 
 using namespace std;
 
+#if defined(__linux)
+    #define TIME_TAKEN_FORMAT "Time Taken %ld %s\n"
+#else
+    #define TIME_TAKEN_FORMAT "Time Taken %lld %s\n"
+#endif
+
 
 /* Function to print permutations of string
    This function takes three parameters:
@@ -38,12 +44,12 @@ int main()
    string a = "abcdefghihi";
    int len = a.size();
    printf("length of input string is %d\n", len);
-   int seq = 0;
    permute(a, 0, len, count);
    chrono::steady_clock::time_point end = chrono::steady_clock::now();
    printf("Total Permuations/Factorial: %d! = %d\n", len, count);
-   printf("Time Taken %lld us\n", chrono::duration_cast<chrono::microseconds>(end - begin).count());
-   printf("Time Taken %lld ms\n", chrono::duration_cast<chrono::milliseconds>(end - begin).count());
-   printf("Time Taken %lld sec\n", chrono::duration_cast<chrono::seconds>(end - begin).count());
+   printf(TIME_TAKEN_FORMAT, chrono::duration_cast<chrono::microseconds>(end - begin).count(), "us");
+   printf(TIME_TAKEN_FORMAT, chrono::duration_cast<chrono::milliseconds>(end - begin).count(), "ms");
+   printf(TIME_TAKEN_FORMAT, chrono::duration_cast<chrono::seconds>(end - begin).count(), "sec");   
+
    return 0;
 }
