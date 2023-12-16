@@ -8,7 +8,7 @@ using namespace std;
 
 #if defined(__linux)
     #define TIME_TAKEN_FORMAT "Time Taken %ld %s\n"
-#else
+#elif defined(__APPLE__) && defined(__MACH__)
     #define TIME_TAKEN_FORMAT "Time Taken %lld %s\n"
 #endif
 
