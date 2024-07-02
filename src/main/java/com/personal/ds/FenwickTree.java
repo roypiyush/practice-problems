@@ -1,7 +1,5 @@
 package com.personal.ds;
 
-import java.util.Arrays;
-
 /**
  * Binary Indexed Tree
  */
@@ -34,7 +32,7 @@ public class FenwickTree {
             if (p < tree.length) {
                 tree[p] += tree[i];
             }
-            cur = p;
+            cur = p; // consider hierarchy only
         }
     }
 
