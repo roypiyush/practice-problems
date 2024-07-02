@@ -9,21 +9,15 @@ public class FenwickTree {
     private final int[] tree;
 
     public FenwickTree(final int[] arr) {
-        tree = Arrays.copyOf(arr, arr.length + 1);
-        // adjust
-        int i = arr.length;
-        while (i > 0) {
-            tree[i] = tree[i - 1];
-            i--;
+        tree = new int[arr.length + 1];
+        for (int i = 1; i <= arr.length; i++) {
+            tree[i] = arr[i - 1];
         }
 
-        tree[i] = 0;
-        makeTree();
-    }
-
-    private void makeTree() {
+        // prepare the tree
         for (int i = 1; i < tree.length; i++) {
-            int p = i + (i & -i); // parent
+            int p = i + (i & -i);
+            // update next parent only. The parent, p will cumulate its parent when called
             if (p < tree.length) {
                 tree[p] += tree[i];
             }
@@ -58,14 +52,24 @@ public class FenwickTree {
         return query(j) - query(i - 1);
     }
 
+    private int elementAt(final int i) {
+        return query(i) - query(i - 1);
+    }
+
     public static void main(String[] args) {
         int[] arr = {2, -1, 3, 1, 4};
         final FenwickTree fenwickTree = new FenwickTree(arr);
-        System.out.println(Arrays.toString(arr));
+
         for (int i = 0; i < arr.length; i++) {
             System.out.printf("%d, ", fenwickTree.query(i));
         }
-        System.out.println();
+        System.out.println(" -> Fenwick Tree");
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.printf("%d, ", fenwickTree.elementAt(i));
+        }
+        System.out.println(" -> Original Array");
+
         for (int i = 0; i < arr.length; i++) {
             for (int j = i; j < arr.length; j++) {
                 System.out.printf("Range query [%d, %d] is %d%n", i, j, fenwickTree.rangeQuery(i, j));
