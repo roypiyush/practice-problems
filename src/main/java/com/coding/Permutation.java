@@ -1,14 +1,10 @@
 package com.coding;
 
+import com.lib.Utils;
+
 import java.util.Arrays;
 
 public class Permutation {
-
-    private void swap(final char[] s, final int i, final int j) {
-        char t = s[i];
-        s[i] = s[j];
-        s[j] = t;
-    }
 
     public void permute(final char[] s, final int i, final int j) {
 
@@ -18,9 +14,9 @@ public class Permutation {
         }
 
         for (int k = i; k <= j; k++) {
-            swap(s, i, k);
+            Utils.swap(s, i, k);
             permute(s, i + 1, j);
-            swap(s, i, k);
+            Utils.swap(s, i, k);
         }
     }
 

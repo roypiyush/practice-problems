@@ -1,7 +1,8 @@
 package com.coding;
 
+import com.lib.Utils;
+
 import java.util.Arrays;
-import java.util.Random;
 
 public class QuickSort {
     int partition(int[] nums, int p, int q, int pivot) {
@@ -43,17 +44,10 @@ public class QuickSort {
 
         System.out.println(Arrays.toString(nums));
 
-        populateWithRandomValues(nums);
+        Utils.populateWithRandomValues(nums);
 
         quickSort.quickSort(nums, 0, nums.length - 1);
         System.out.println(Arrays.toString(nums));
     }
 
-    private static void populateWithRandomValues(int[] nums) {
-        Random random = new Random();
-        for (int i = 0; i < nums.length; i++) {
-            nums[i] = random.nextInt(1000);
-        }
-        System.out.printf("%s -> Generated Array\n", Arrays.toString(nums));
-    }
 }

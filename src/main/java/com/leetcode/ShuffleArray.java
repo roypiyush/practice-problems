@@ -1,5 +1,7 @@
 package com.leetcode;
 
+import com.lib.Utils;
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -21,16 +23,10 @@ public class ShuffleArray {
 
         for (int i = nums.length - 1; i > 0; i--) {
             int n = rand.nextInt(i);
-            swap(copy, i, n);
+            Utils.swap(copy, i, n);
         }
 
         return copy;
-    }
-
-    private void swap(int[] arr, int i, int j) {
-        int t = arr[i];
-        arr[i] = arr[j];
-        arr[j] = t;
     }
 
     public static void main(String[] args) {
