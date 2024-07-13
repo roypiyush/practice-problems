@@ -1,4 +1,4 @@
-package com.coding;
+package com.personal;
 
 public class LongestPrefix {
     public static void main(String[] args) {

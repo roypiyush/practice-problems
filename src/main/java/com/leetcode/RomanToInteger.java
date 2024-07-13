@@ -1,4 +1,4 @@
-package com.coding;
+package com.leetcode;
 
 public class RomanToInteger {
     static int getInt(char roman) {

@@ -1,4 +1,4 @@
-package com.coding;
+package com.personal;
 
 import com.lib.Utils;
 

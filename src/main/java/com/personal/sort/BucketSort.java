@@ -1,4 +1,4 @@
-package com.coding;
+package com.personal.sort;
 
 import java.util.Arrays;
 
