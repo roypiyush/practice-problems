@@ -15,6 +15,18 @@ class ListNode {
         this.val = val;
         this.next = next;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        ListNode cur = this;
+        while (cur != null) {
+            builder.append(cur.val + " -> ");
+            cur = cur.next;
+        }
+        builder.append("⏚");
+        return builder.toString();
+    }
 }
 
 public class RemoveDuplicatesInList {
