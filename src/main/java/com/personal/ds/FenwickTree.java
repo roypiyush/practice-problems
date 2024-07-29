@@ -59,14 +59,8 @@ public class FenwickTree {
         final FenwickTree fenwickTree = new FenwickTree(arr);
 
         for (int i = 0; i < arr.length; i++) {
-            System.out.printf("%d, ", fenwickTree.query(i));
+            System.out.printf("%d" + (i + 1 == arr.length ? " -> Original Array\n" : ", "), fenwickTree.elementAt(i));
         }
-        System.out.println(" -> Fenwick Tree");
-
-        for (int i = 0; i < arr.length; i++) {
-            System.out.printf("%d, ", fenwickTree.elementAt(i));
-        }
-        System.out.println(" -> Original Array");
 
         for (int i = 0; i < arr.length; i++) {
             for (int j = i; j < arr.length; j++) {

@@ -52,7 +52,7 @@ public class HeapSort {
 
     private void buildMapHeap(final int[] array) {
         for (int i = array.length / 2; i >= 0; i--) {
-            maxHeapify(array, array.length - 1, i);
+            maxHeapify(array, array.length, i);
         }
     }
 
