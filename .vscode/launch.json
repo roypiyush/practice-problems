@@ -1,0 +1,129 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Solution",
+            "request": "launch",
+            "mainClass": "com.leetcode.Solution",
+            "projectName": "practice-problem"
+        },
+        {
+            "type": "java",
+            "name": "StringConcatAllWords",
+            "request": "launch",
+            "mainClass": "com.leetcode.StringConcatAllWords",
+            "projectName": "practice-problem"
+        },
+        {
+            "type": "java",
+            "name": "EarliestAndLatest",
+            "request": "launch",
+            "mainClass": "com.leetcode.EarliestAndLatest",
+            "projectName": "practice-problem"
+        },
+        {
+            "type": "java",
+            "name": "FindSumPairs",
+            "request": "launch",
+            "mainClass": "com.leetcode.FindSumPairs",
+            "projectName": "practice-problem"
+        },
+        {
+            "type": "java",
+            "name": "FindOriginalTypedStringII",
+            "request": "launch",
+            "mainClass": "com.leetcode.FindOriginalTypedStringII",
+            "projectName": "practice-problem"
+        },
+        {
+            "type": "java",
+            "name": "RemoveDuplicateLetters",
+            "request": "launch",
+            "mainClass": "com.leetcode.RemoveDuplicateLetters",
+            "projectName": "practice-problem"
+        },
+        {
+            "type": "java",
+            "name": "SnakeLadder",
+            "request": "launch",
+            "mainClass": "com.leetcode.SnakeLadder",
+            "projectName": "practice-problem"
+        },
+        {
+            "type": "java",
+            "name": "BasicCalculator2",
+            "request": "launch",
+            "mainClass": "com.leetcode.BasicCalculator2",
+            "projectName": "practice-problem"
+        },
+        {
+            "type": "java",
+            "name": "BitwiseANDofAll",
+            "request": "launch",
+            "mainClass": "com.leetcode.BitwiseANDofAll",
+            "projectName": "practice-problem"
+        },
+        {
+            "type": "java",
+            "name": "CanArrange",
+            "request": "launch",
+            "mainClass": "com.leetcode.CanArrange",
+            "projectName": "practice-problem"
+        },
+        {
+            "type": "java",
+            "name": "CountOfSubIslands",
+            "request": "launch",
+            "mainClass": "com.leetcode.CountOfSubIslands",
+            "projectName": "practice-problem"
+        },
+        {
+            "type": "java",
+            "name": "SieveOfSundaram",
+            "request": "launch",
+            "mainClass": "com.personal.primes.SieveOfSundaram",
+            "projectName": "practice-problem"
+        },
+        {
+            "type": "java",
+            "name": "SieveOfEratosthenes",
+            "request": "launch",
+            "mainClass": "com.personal.primes.SieveOfEratosthenes",
+            "projectName": "practice-problem"
+        },
+        {
+            "type": "java",
+            "name": "MinStack",
+            "request": "launch",
+            "mainClass": "com.leetcode.MinStack",
+            "projectName": "practice-problem"
+        },
+        {
+            "type": "java",
+            "name": "LengthOfLongestSubString",
+            "request": "launch",
+            "mainClass": "com.leetcode.LengthOfLongestSubString",
+            "projectName": "practice-problem"
+        },
+        {
+            "type": "java",
+            "name": "ApplySubstitution",
+            "request": "launch",
+            "mainClass": "com.leetcode.ApplySubstitution",
+            "projectName": "practice-problem"
+        },
+        {
+            "name": "Debug Current C++ File",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/target/cpp/${fileBasenameNoExtension}",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "C/C++: clang++ build active file"
+        }
+    ]
+}
